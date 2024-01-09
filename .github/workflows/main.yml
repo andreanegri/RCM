@@ -139,3 +139,13 @@ jobs:
           name: RCM_client_${{ matrix.os }}_turbovnc_${{ matrix.turbovnc-version }}
           path: |
             dist
+  upload:
+      name: Create release and upload artifacts
+      needs:
+        - build
+      runs-on: ubuntu-20.04
+      steps:
+        - name: Download artifacts
+          uses: actions/download-artifact@v2
+        - name: Inspect directory after downloading artifacts
+          run: ls -alFR
